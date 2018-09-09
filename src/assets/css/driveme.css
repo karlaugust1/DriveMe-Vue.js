@@ -1,0 +1,280 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "driveme-logos-freepik";
+  src:url("../fonts/driveme-logos-freepik.eot");
+  src:url("../fonts/driveme-logos-freepik.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/driveme-logos-freepik.woff") format("woff"),
+    url("../fonts/driveme-logos-freepik.ttf") format("truetype"),
+    url("../fonts/driveme-logos-freepik.svg#driveme-logos-freepik") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "driveme-logos-freepik" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="driveme-"]:before,
+[class*=" driveme-"]:before {
+  font-family: "driveme-logos-freepik" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.driveme-kia:before {
+  content: "\61";
+}
+.driveme-smart:before {
+  content: "\62";
+}
+.driveme-fiat:before {
+  content: "\63";
+}
+.driveme-ford:before {
+  content: "\64";
+}
+.driveme-mini:before {
+  content: "\65";
+}
+.driveme-porsche:before {
+  content: "\66";
+}
+.driveme-jeep:before {
+  content: "\67";
+}
+.driveme-holden:before {
+  content: "\68";
+}
+.driveme-ferrari:before {
+  content: "\69";
+}
+.driveme-tesla:before {
+  content: "\6a";
+}
+.driveme-sym-motor:before {
+  content: "\6b";
+}
+.driveme-tvs:before {
+  content: "\6c";
+}
+.driveme-bimota:before {
+  content: "\6d";
+}
+.driveme-kawasaki:before {
+  content: "\6e";
+}
+.driveme-husqvarna:before {
+  content: "\6f";
+}
+.driveme-piaggio:before {
+  content: "\70";
+}
+.driveme-harley-davidson:before {
+  content: "\71";
+}
+.driveme-derbi:before {
+  content: "\72";
+}
+.driveme-hyosung:before {
+  content: "\73";
+}
+.driveme-triumph:before {
+  content: "\74";
+}
+.driveme-hero:before {
+  content: "\75";
+}
+.driveme-daelim:before {
+  content: "\76";
+}
+.driveme-victory:before {
+  content: "\77";
+}
+.driveme-kymco:before {
+  content: "\78";
+}
+.driveme-vespa:before {
+  content: "\79";
+}
+.driveme-beat:before {
+  content: "\7a";
+}
+.driveme-ktm:before {
+  content: "\41";
+}
+.driveme-turkish-airlines:before {
+  content: "\42";
+}
+.driveme-japan-airlines:before {
+  content: "\43";
+}
+.driveme-pontiac:before {
+  content: "\44";
+}
+.driveme-toyota:before {
+  content: "\45";
+}
+.driveme-mazda:before {
+  content: "\46";
+}
+.driveme-volkswagen:before {
+  content: "\47";
+}
+.driveme-american-airlines:before {
+  content: "\48";
+}
+.driveme-delta-airlines:before {
+  content: "\49";
+}
+.driveme-honda-1:before {
+  content: "\4a";
+}
+.driveme-yamaha:before {
+  content: "\4b";
+}
+.driveme-klm:before {
+  content: "\4c";
+}
+.driveme-air-canada:before {
+  content: "\4d";
+}
+.driveme-lexus:before {
+  content: "\4e";
+}
+.driveme-honda:before {
+  content: "\4f";
+}
+.driveme-citroen:before {
+  content: "\50";
+}
+.driveme-malaysia-airlines:before {
+  content: "\51";
+}
+.driveme-ducati:before {
+  content: "\52";
+}
+.driveme-porto:before {
+  content: "\53";
+}
+.driveme-emirates:before {
+  content: "\54";
+}
+.driveme-nissan:before {
+  content: "\55";
+}
+.driveme-renault:before {
+  content: "\56";
+}
+.driveme-opel:before {
+  content: "\57";
+}
+.driveme-subaru:before {
+  content: "\58";
+}
+.driveme-singapore-airlines:before {
+  content: "\59";
+}
+.driveme-new-york:before {
+  content: "\5a";
+}
+.driveme-underground:before {
+  content: "\30";
+}
+.driveme-iberia:before {
+  content: "\31";
+}
+.driveme-mercury:before {
+  content: "\32";
+}
+.driveme-cadillac:before {
+  content: "\33";
+}
+.driveme-volvo:before {
+  content: "\34";
+}
+.driveme-suzuki:before {
+  content: "\35";
+}
+.driveme-british-airways:before {
+  content: "\36";
+}
+.driveme-tokyo:before {
+  content: "\37";
+}
+.driveme-sao-paulo:before {
+  content: "\38";
+}
+.driveme-air-china:before {
+  content: "\39";
+}
+.driveme-infiniti:before {
+  content: "\21";
+}
+.driveme-audi:before {
+  content: "\22";
+}
+.driveme-chevrolet:before {
+  content: "\23";
+}
+.driveme-peugeot:before {
+  content: "\24";
+}
+.driveme-vueling:before {
+  content: "\25";
+}
+.driveme-danish-air-transport:before {
+  content: "\26";
+}
+.driveme-xiamen-air:before {
+  content: "\27";
+}
+.driveme-air-newzealand:before {
+  content: "\28";
+}
+.driveme-bmw:before {
+  content: "\29";
+}
+.driveme-mercedes-benz:before {
+  content: "\2a";
+}
+.driveme-mitsubishi:before {
+  content: "\2b";
+}
+.driveme-acura:before {
+  content: "\2c";
+}
+.driveme-thai:before {
+  content: "\2d";
+}
+.driveme-swiss-international-airlines:before {
+  content: "\2e";
+}
+.driveme-bangkok-airways:before {
+  content: "\2f";
+}
+.driveme-qantas:before {
+  content: "\3a";
+}
+.driveme-hyundai:before {
+  content: "\3b";
+}
+.driveme-buick:before {
+  content: "\3c";
+}
