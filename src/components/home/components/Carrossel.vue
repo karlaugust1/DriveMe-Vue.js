@@ -9,9 +9,9 @@
                         <h3 class="js-animate-1 hinge-in-from-middle-y">As peças certas para seu veículo</h3>
 
                         <div class="button-group stacked-for-small">
-                            <a class="button rh-button slide-in-down js-animate-3" href="#"><i class="zmdi zmdi-assignment-check"></i>
+                            <router-link to="/catalogo" class="button rh-button slide-in-down js-animate-3" href="#"><i class="zmdi zmdi-assignment-check"></i>
                                 <span>Ver catálogo</span>
-                            </a>
+                            </router-link>
                             <a class="button rh-button secondary-white flip-y icon-left slide-in-up js-animate-3" href="#"><i class="zmdi zmdi-info fa fa-info-circle"></i>
                                 <span>Sobre a empresa</span>
                             </a>

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
-
+import VModal from 'vue-js-modal'
 import { routes } from './routes';
 
 import './assets/ajax/libs/jquery/3.2.1/jquery.min.js';
@@ -26,6 +26,10 @@ import './assets/css/driveme.css';
 import './assets/css/style.css';
 
 Vue.use(VueRouter);
+Vue.use(VueResource);
+Vue.use(VModal)
+
+Vue.http.options.root = "http://localhost:8081/DriveMe/api/v1/";
 
 const router = new VueRouter({
   routes,

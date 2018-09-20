@@ -11,7 +11,7 @@
                         <div class="column small-12 medium-6 large-4">
                             <label>
                                 <span class="input-group">
-                                    <span class="input-group-label zmdi zmdi-truck fa fa-truck"></span>
+                                    <span class="input-group-label rh rh-fw rh-bike"></span>
                                     <select class="input-group-field placeholder" id="js-form-select" name="vehicle-type" required>
                                         <option disabled selected hidden value="">Tipo de Veículo</option>
                                         <option value="1">Leve</option>

@@ -43,7 +43,8 @@
                             </li><!-- /end main-menu item -->
 
                             <li>
-                                <a href="#" data-open="js-modal-account">Cadastro/Log-in</a>
+                                <a @click.prevent="show">Cadastro/Log-in</a>
+                                <!-- <a href="#" data-open="js-modal-account">Cadastro/Log-in</a> -->
                             </li><!-- /end main-menu item -->
 
 
@@ -63,12 +64,37 @@
                 </div><!-- /end .column -->
             </div><!-- /end .row -->
         </header><!-- /end .site-header -->
+        <modal name="hello-world">
+            <div class="js-tabs-container" >
+                <ul class="tabs secondary expanded" id="js-modal-tabs" data-tabs data-auto-focus="false">
+					<li class="tabs-title is-active">
+						<a href="#js-modal-login-panel"> <i class="zmdi zmdi-sign-in zmdi-hc-fw fa fa-sign-in fa-fw"></i>Log-In</a>
+					</li>
+					<li class="tabs-title">
+						<a href="#js-modal-register-panel"> <i class="zmdi zmdi-account-add zmdi-hc-fw fa fa-user-plus fa-fw"></i>Cadastro</a>
+					</li>
+				</ul>
+                <div class="tabs-content" data-tabs-content="js-modal-tabs" data-auto-focus="false">
+					<div class="tabs-panel is-active" id="js-modal-login-panel">
+                        teste
+					</div>
+                </div>
+				
+            </div>
+        </modal>
       </div><!-- /end #js-sticky-container -->
 </template>
 
 <script>
 export default {
-    
+    methods: {
+        show () {
+            this.$modal.show('hello-world');
+        },
+        hide () {
+            this.$modal.hide('hello-world');
+        }
+    }
 }
 </script>
 

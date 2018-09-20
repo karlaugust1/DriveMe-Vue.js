@@ -35,20 +35,10 @@
                             </label>
                             <label>
                                 <span class="input-group">
-                                    <span class="input-group-label driveme-mitsubishi fa fa-marker"></span>
-                                    <select class="input-group-field placeholder" id="js-form-start-location" name="vehicle-type">
-                                        <option disabled selected hidden value="">Montadora</option>
-                                        <option value="1">Volkswagen</option>
-                                        <option value="2">Chevrolet</option>
-                                        <option value="3">Fiat</option>
-                                        <option value="4">Ford</option>
-                                        <option value="5">Citroen</option>
-                                        <option value="6">KIA</option>
-                                        <option value="7">Honda</option>
-                                        <option value="8">Subaru</option>
-                                        <option value="9">Hyundai</option>
-                                        <option value="10">Suzuki</option>
-                                        <option value="11">Gurgel</option>
+                                    <span :class="'input-group-label fa fa-marker driveme-' + montadora.montIcone"></span>
+                                    <select class="input-group-field placeholder" id="js-form-start-location" name="vehicle-type" v-model="montadora">
+                                        <option disabled selected hidden value="">Seleciona a montadora</option>
+                                        <option :value="montadora" v-for="montadora in montadoras" :key="montadora.montId" >{{montadora.montDescricao}}</option>
                                     </select>
                                 </span>
                             </label>
@@ -103,420 +93,52 @@
             </div><!-- /end .section-trapeze -->
 
             <div class="section">
+                <div class="row small-up-1 medium-up-2 large-up-3" v-if="pecas">
+                    <div class="card card-product bg-secondary block-shadow" v-for="peca in pecas" :key="peca.pecaId">
+
+                        <div class="card-divider">
+                            <h3 class="h4 headline">{{peca.pecaDescricao}}</h3>
+                        </div>
+
+                        <div class="card-section card-product-data flex-container align-justify">
+
+                            <div class="price-wrap">
+                                <div class="price"><sup>R$<i class="zmdi"></i></sup>
+                                    <span class="price-val">{{peca.valorPrincipal}}</span><sup>,{{peca.valorCentavos}}</sup>
+                                    <ul class="rating text-center">
+                                        <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
+                                        <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
+                                        <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
+                                        <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
+                                        <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <ul class="card-product-features">
+                                <li><i :class="'driveme-' + peca.modelos[0].montadora.montIcone"></i></li>
+                                <li><i :class="'rh rh-fw ' + peca.tipoVeiculos[0].tiveIcone"></i>{{peca.tipoVeiculos[0].tiveDescricao}}</li>
+                                <li><i class="rh rh-fw rh-money-gear"></i>{{peca.aplicacaos[0].apliDescricao}}</li>
+                            </ul>
+                        </div>
+
+                        <img :src="peca.pecaImagems[0].peimUrl" alt="">
+
+                        <div class="card-section text-center">
+                            <a class="button rh-button flip-y" data-open="js-modal-account"><i class="zmdi zmdi-info"></i>
+                                <span>Detalhes</span>
+                            </a>
+                        </div>
+                    </div><!-- /end .column -->                    
+                </div>
                 <div class="row small-up-1 medium-up-2 large-up-3">
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
-                    <div class="column column-block">
-
-                        <section class="card card-product simple bg-secondary block-shadow">
-                            <header class="card-divider">
-                                <h3 class="h4 headline">Caixa de Direção</h3>
-                                <ul class="rating">
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star primary-color"></i></li>
-                                    <li><i class="zmdi zmdi-star fa fa-star gray-shade-color"></i></li>
-                                </ul>
-                            </header>
-                            <img src="/static/fleet/card-product-14.jpg" alt="">
-                            <div class="card-section flex-container align-middle align-justify">
-                                <div class="price mb0">
-                                    <sup>R$</sup>
-                                    <span class="price-val">99</span><sup>,90</sup>
-                                </div>
-                                <a class="button rh-button flip-y right-vb small mb0" href="fleet-detalhes-right-sidebar.html">
-                                    <i class="zmdi zmdi-link fa fa-link"></i>
-                                    <span>detalhes</span>
-                                </a>
-                            </div>
-                            <footer class="card-section features flex-container align-middle align-spaced">
-                                <div><i class="rh rh-money-gear rh-fw"></i></div>
-                                <div><i class="rh rh-highway rh-fw"></i></div>
-                                <div><i class="rh rh-gps rh-fw"></i></div>
-                                <div><i class="rh rh-steering rh-fw"></i></div>
-                                <div><i class="rh rh-gearbox rh-fw"></i></div>
-                            </footer>
-                        </section>
-
-                    </div><!-- /end .column -->
+                    Ops! Parece que alguma coisa aconteceu de errado :/<br>
+                    Tente recarregar a página ou altere os valores preenchidos nos campos de pesquisa.
                 </div><!-- /end .row -->
 
                 <!-- ===== PAGINAÇÃO ===== -->
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="column small-12">
                         <ul class="pagination text-center" aria-label="Pagination">
                             <li class="pagination-previous disabled">Anterior<span class="show-for-sr">Página</span></li>
@@ -530,16 +152,62 @@
                             <li class="pagination-next"><a href="#" aria-label="Next page">Próxima<span class="show-for-sr">página</span></a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </div><!-- /end .section -->
         </main>
     </div>
 </template>
 <script>
+import PecaService from '../../domain/services/PecaService.js'
+import MontadoraService from '../../domain/services/MontadoraService.js'
+
 export default {
-    
+
+    data(){
+        return {
+            pecas: '',
+            montadoras: '',
+            montadora: '',
+        }
+    },
+    created(){
+        /* Lista de peças */
+        this.service = new PecaService(this.$resource);
+        this.service
+            .list()
+            .then(resposta => {
+                if(resposta.body.status === 'SUCCESS'){
+                    this.pecas = resposta.body.pecas;
+                }
+                console.log(resposta)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+        /* Lista de montadoras */
+        this.service = new MontadoraService(this.$resource);
+        this.service
+            .list()
+            .then(resposta => {
+                if(resposta.body.status === 'SUCCESS'){
+                    this.montadoras = resposta.body.montadoras;
+                }
+                console.log(resposta)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    },
+    methods:{
+
+    }
 }
 </script>
 <style>
-
+.card{
+    display: inline-block !important;
+    max-width: 295px;
+    margin-right:5px; 
+}
 </style>
+

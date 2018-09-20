@@ -1,0 +1,15 @@
+export default class PecaService{
+
+    constructor(resource){
+        this._resource = resource('pecas{/id}');
+    }
+    post(peca){
+        return this._resource.save(peca)
+    }
+    list(){
+        return this._resource.query();
+    }
+    get(id){
+        return this._resource.query({id});
+    }
+}

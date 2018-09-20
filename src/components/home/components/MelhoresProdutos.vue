@@ -8,7 +8,7 @@
                 </header>
             </div>
             <div class="column small-12">
-                <div class="owl-carousel" style="display: inline-block">
+                <div class="owl-carousel">
 
                     <!-- Produto -->
                     <div class="card card-product bg-secondary block-shadow">
@@ -33,7 +33,7 @@
                             </div><!-- /end .price-wrap -->
 
                             <ul class="card-product-features">
-                                <li><i class="driveme-citroen"></i></li>
+                                <li><i class="driveme-sao-paulo"></i></li>
                                 <li><i class="zmdi zmdi-car zmdi-hc-fw fa fa-gear fa-fw"></i>Médio</li>
                                 <li><i class="zmdi zmdi-settings zmdi-hc-fw fa fa-gear fa-fw"></i>Direção</li>
                             </ul>

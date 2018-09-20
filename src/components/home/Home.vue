@@ -8,7 +8,6 @@
         <vantagens/>
         <counter/>
     </div>
-
 </template>
 <script>
 import Carrossel from "./components/Carrossel.vue";
