@@ -37,7 +37,7 @@
                                 <span class="input-group">
                                     <span :class="'input-group-label fa fa-marker driveme-' + montadora.montIcone"></span>
                                     <select class="input-group-field placeholder" id="js-form-start-location" name="vehicle-type" v-model="montadora">
-                                        <option disabled selected hidden value="">Seleciona a montadora</option>
+                                        <option disabled selected hidden value="">Selecione a montadora</option>
                                         <option :value="montadora" v-for="montadora in montadoras" :key="montadora.montId" >{{montadora.montDescricao}}</option>
                                     </select>
                                 </span>
@@ -46,7 +46,7 @@
                         <div class="column small-12 medium-6 large-4">
                             <label>
                                 <span class="input-group">
-                                    <span class="input-group-label zmdi zmdi-car fa fa-truck"></span>
+                                    <span class="input-group-label fa fa-truck"></span>
                                     <select class="input-group-field placeholder" id="js-form-product-type" name="vehicle-type">
                                         <option disabled selected hidden value="">Modelo</option>
                                         <option value="1">Leve</option>
