@@ -1,13 +1,17 @@
 <template>
+<!-- Alisson de Oliveira Teixeira
+	Karl August Harder
+	Projeto Integrador IV
+	Orientador: Rodrigo Marcondes
+	Sistemas de Informação - 4º Período
+	Centro Universitário UNIFACEAR -->
   <div id="app">
     <div class="off-canvas-wrapper ">
 			<menu-mobile/>
       <div class="off-canvas-content" data-off-canvas-content>
         <menu-principal/>
         <transition name="pagina">
-          <keep-alive>
-            <router-view></router-view>
-          </keep-alive>
+          <router-view></router-view>
         </transition> 
         <rodape/>
       </div>

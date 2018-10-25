@@ -62,7 +62,7 @@
                                                 <!-- <span class="input-group-label driveme-mitsubishi"></span> -->
                                                 <span :class="'input-group-label fa fa-marker driveme-' + montadora.montIcone"></span>
                                                 <select class="input-group-field placeholder" id="js-form-start-location" name="vehicle-type" v-model="montadora">
-                                                    <option disabled selected value="">Selecione a montadora</option>
+                                                    <option disabled selected value="">Montadora</option>
                                                     <option :value="montadora" v-for="montadora in montadoras" :key="montadora.montId" >{{montadora.montDescricao}}</option>
                                                 </select>
                                             </span>
@@ -74,6 +74,7 @@
                                             <span class="input-group">
                                                 <span class="input-group-label zmdi zmdi-arrows fa fa-marker"></span>
                                                 <select class="input-group-field placeholder" name="aplicacao" v-model="aplicacao">
+                                                    <option disabled selected hidden value="">Aplicação</option>
                                                     <option :value="aplicacao" v-for="aplicacao in aplicacoes" :key="aplicacao.apliId">{{aplicacao.apliDescricao}}</option>
                                                 </select>
                                             </span>
@@ -444,7 +445,11 @@ export default {
                 .post(this.peca)
                 .then(resposta => {
                     if(resposta.body.status === 'SUCCESS'){
-                        console.log(resposta)
+                        this.peca = new Peca();
+                        this.tipoVeiculo = new tipoVeiculo();
+                        this.aplicacao = new Aplicacao();
+                        this.montadora = new Montadora();
+                        this.modelo = new Modelo();
                     }
                 })
                 .catch(e => {

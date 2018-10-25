@@ -3396,8 +3396,8 @@ table.hover:not(.unstriped) tr:nth-of-type(even):hover {
 }
 
 .tabs-panel {
-    display: none;
     padding: 1rem;
+    display: block;
 }
 
 .tabs-panel.is-active {

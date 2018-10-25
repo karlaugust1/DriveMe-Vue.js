@@ -1753,11 +1753,13 @@ button {
 .rh-button.flip-y:after,.rh-button.flip-y:before,.rh-button.primary.flip-y:after,.rh-button.primary.flip-y:before {
     border-top-color: transparent;
     border-bottom-color: #ada474;
+    /* border-bottom-color: rgb(99, 186, 117); */
 }
 
 .rh-button.flip-y,.rh-button.flip-y:focus:after,.rh-button.flip-y:hover:after,.rh-button.primary.flip-y,.rh-button.primary.flip-y:focus:after,.rh-button.primary.flip-y:hover:after {
     border-top-color: transparent;
-    border-bottom-color: #ad9574;
+    border-bottom-color:  #ad9574;
+    /* border-bottom-color: rgb(105, 212, 132); */
 }
 
 .rh-button.secondary:after,.rh-button.secondary:before {

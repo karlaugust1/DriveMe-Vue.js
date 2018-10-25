@@ -22,6 +22,9 @@ import './assets/css/driveme.css';
 
 // import './assets/css/plugins.css';
 
+import './assets/css/lightgallery.css'
+import './assets/js/lightgallery-all'
+
 // CSS Principal
 import './assets/css/style.css';
 
