@@ -22,11 +22,19 @@
                             </a>
                         </div> -->
 
-                        <div class="item" :id="peca.pecaId + 'lightgallery'">
+                        <!-- <div class="item" :id="peca.pecaId + 'lightgallery'">
                             <a class="image-hover" :href="peca.pecaImagems[0].peimUrl">
                                 <img :src="peca.pecaImagems[0].peimUrl" alt="">
                                 <div class="image-hover-buttons"><span class="button-zoom"></span></div>
                             </a>
+                        </div> -->
+                        <div class="item" :id="peca.pecaId + 'lightgallery'">
+                            <div v-for="(foto, index) in peca.pecaImagems" :key="foto.peimId" :href="peca.pecaImagems[index].peimUrl" >
+                                <a class="image-hover" :href="foto.peimId" >
+                                    <img :src="foto.peimUrl" alt="">
+                                    <div class="image-hover-buttons"><span class="button-zoom"></span></div>
+                                </a>
+                            </div>
                         </div>
 
                     </div> <!-- /end .content-slider -->
