@@ -4,16 +4,15 @@
             <div class="column small-12 large-12">
 
                 <div class="card card-product-large">
-                        <div class="card-divider" style="width: 1164px;">
-                                <div class="block-header border align-center text-center" style="padding-top:10px;">
-                                    
-                                        <hr class="dotted">
-                                        <h3 class="headline">{{peca.pecaNome}}</h3>
-                                        <hr class="dotted">
-                                    </div>
-                            </div>
+                    <div class="card-divider" style="width: 1170px;">
+                        <div class="block-header border align-center text-center" style="padding-top:10px;">
+                            <hr class="dotted">
+                            <h3 class="headline">{{peca.pecaNome}}</h3>
+                            <hr class="dotted">
+                        </div>
+                    </div>
                     <!-- Imagem Grande -->
-                    <div class="content-slider rh-thumbnail" id="js-slick-main" style="width: 1164px;">
+                    <div class="content-slider rh-thumbnail" id="js-slick-main" style="width: 1170px;">
 
                         <!-- <div class="item">
                             <a class="image-hover" :href="peca.pecaImagems[0].peimUrl" data-rel="lightcase-zoom:vehiclePreview">
@@ -29,7 +28,7 @@
                             </a>
                         </div> -->
                         <div class="item" :id="peca.pecaId + 'lightgallery'">
-                            <div v-for="(foto, index) in peca.pecaImagems" :key="foto.peimId" :href="peca.pecaImagems[index].peimUrl" >
+                            <div v-for="(foto, index) in peca.pecaImagems" :key="foto.peimId" :href="peca.pecaImagems[index].peimUrl" v-show="index == 0" >
                                 <a class="image-hover" :href="foto.peimId" >
                                     <img :src="foto.peimUrl" alt="">
                                     <div class="image-hover-buttons"><span class="button-zoom"></span></div>
@@ -39,8 +38,7 @@
 
                     </div> <!-- /end .content-slider -->
 
-                    <div class="card-divider" style="width: 1164px;">
-
+                    <div class="card-divider" style="width: 1170px;">
                         <!-- Carrossel de Imagens -->
                         <div class="content-slider-thumbs" >
                             <!-- <div v-for="imagem in peca.pecaImagems" :key="imagem.peimId" style="width: 0px !important; display: inline-block">
@@ -50,40 +48,46 @@
                                 <img class="grayscale" src="img/fleet/fleet-s-thumbnail-02.html" alt="">
                             </div> -->
                         </div><!-- /end .content-slider-thumbs -->
-
-                        <!-- Product preview metadata -->
-                        <div class="product-meta flex-container">
-
-                            <div class="product-meta-item">
-                                <a class="media-object download-widget" href="#">
-                                    <span class="media-object-section"><i class="rh rh-pdf"></i></span>
-                                    <span class="media-object-section download-widget-text">
-                                        <span>Baixar</span><br><span>informações</span>
-                                    </span>
-                                </a>
-                            </div>
-
-                            <div class="product-meta-item">
-                                <a class="media-object download-widget" href="#">
-                                    <span class="media-object-section"><i class="rh rh-wish"></i></span>
-                                    <span class="media-object-section download-widget-text">
-                                        <span>Realizar</span><br><span>compra rápida</span>
-                                    </span>
-                                </a>
-                            </div>
-                            <!-- Diagramador -->
-                            <div class="product-meta-item">
-                            </div>
-
-                        </div><!-- /end product preview metadata -->
-                    </div><!-- /end .card-divider -->
-
+                    </div>
                 </div><!-- /end .card-product-large -->
             </div><!-- /end .column -->
+            <div class="column small-12 large-12">
+                <div class="card-divider" style="width: 1170px; margim-bottom: 15px;">  
+                    <!-- Product preview metadata -->
+                    <div class="product-meta flex-container">
+                        <div class="product-meta-item">
+                            <a class="media-object download-widget" href="#">
+                                <span class="media-object-section"><i class="rh rh-pdf"></i></span>
+                                <span class="media-object-section download-widget-text">
+                                    <span>Baixar</span><br><span>informações</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="product-meta-item">
+                            <a class="media-object download-widget" href="#">
+                                <span class="media-object-section"><i class="rh rh-wish"></i></span>
+                                <span class="media-object-section download-widget-text">
+                                    <span>Realizar</span><br><span>compra rápida</span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="product-meta-item">
+                            <a class="media-object download-widget">
+                                <span class="media-object-section"><i class="rh rh-alert"></i></span>
+                                <span class="media-object-section download-widget-text">
+                                    <span>Código original</span><br><span>{{peca.pecaIdOriginal}}</span>
+                                </span>
+                            </a>
+                        </div>
+                        <!-- Diagramador -->
+                        <div class="product-meta-item">
+                        </div>
+                    </div><!-- /end product preview metadata -->
+                </div><!-- /end .card-divider -->
+            </div>
+            <div class="column small-12 large-12">
 
-            <div class="column small-12 large-12" style="width: 1164px;">
-
-                <aside class="sidebar card bg-secondary block-shadow card-booking-form">
+                <div class="sidebar bg-secondary block-shadow card-booking-form">
                     <div class="card-divider" style="width: 1164px;">
                         <div class="price large">
                             <sup>R$</sup>
@@ -101,7 +105,7 @@
                             <span>Adicionar ao carrinho</span>
                         </button>
                     </div>
-                </aside><!-- /end .sidebar -->
+                </div><!-- /end .sidebar -->
             </div><!-- /end .column -->
 
             <div class="column small-12 large-12">
@@ -314,7 +318,7 @@
                                                     <span class="h6 publisher"><i class="zmdi zmdi-account zmdi-hc-fw fa fa-user fa-fw"></i>{{avaliacao.usuario.usuaNome}}</span>
                                                     <div class="subheader">
                                                         <i class="zmdi zmdi-calendar zmdi-hc-fw fa fa-calendar fa-fw"></i>
-                                                        <time datetime="2017-05-01">{{avaliacao.peavData}}</time>
+                                                        <time datetime="2017-05-01">{{moment.unix(avaliacao.peavData/1000).format("DD/MM/YYYY HH:mm")}}</time>
                                                     </div>
                                                 </div><!-- /end .comments-post-header -->
 
@@ -418,10 +422,13 @@ import PecaAvaliacaoService from '../../domain/services/PecaAvaliacaoService.js'
 
 import Usuario from '../../domain/models/Usuario.js'
 
+var moment = require('moment');
+
 export default {
     props: ['id'],
     data(){
         return{
+            moment: moment,
             peca: '',
             montar: false,
             estrela1: '/static/star.svg',
@@ -439,17 +446,13 @@ export default {
         }
     },
     created() {
-        // let lightgalleryScript = document.createElement('script');
-        // lightgalleryScript.setAttribute('src','../src/assets/js/lightgallery-all.js');
-        // document.head.appendChild(lightgalleryScript)
 
-        console.log(this.id)
-         this.service = new PecaService(this.$resource);
+        this.service = new PecaService(this.$resource);
             this.service
                 .get(this.id)
                 .then(resposta => {
-                    console.log(resposta)
-                    if(resposta.body.status === 'SUCCESS'){
+                    if(resposta.status == 200){
+                        console.log(resposta)
                         this.peca = resposta.body.peca;
                         this.montar = !this.montar;
                         this.abrirFoto(this.peca.pecaId)
@@ -467,7 +470,6 @@ export default {
             this.service
                 .post(this.pecaAvaliacao)
                 .then(resposta => {
-                    console.log(resposta)
                     if(resposta.body.status === 'SUCCESS'){
                         this.peca.pecaAvaliacaos.unshift(resposta.body.avaliacao)
                         this.pecaAvaliacao.peavDescricao = '',

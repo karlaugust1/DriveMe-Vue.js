@@ -12,17 +12,13 @@
                             <label>
                                 <span class="input-group">
                                     <span class="input-group-label rh rh-fw rh-bike"></span>
-                                    <select class="input-group-field placeholder" id="js-form-select" name="vehicle-type" required>
-                                        <option disabled selected hidden value="">Tipo de Veículo</option>
-                                        <option value="1">Leve</option>
-                                        <option value="2">Médio</option>
-                                        <option value="3">Pesado</option>
-                                        <option value="4">Agrícola</option>
-                                        <option value="5">Motocicleta</option>
+                                    <select class="input-group-field placeholder" id="js-form-select" name="vehicle-type" v-model="tipoVeiculo" required>
+                                        <option selected value="">Tipo de Veículo</option>
+                                        <option :value="tipoVeiculo" v-for="tipoVeiculo in tipoVeiculos" :key="tipoVeiculo.tiveId">{{tipoVeiculo.tiveDescricao}}</option>
                                     </select>
                                 </span>
                             </label>
-                            <button class="button rh-button secondary shadow" type="submit">
+                            <button class="button rh-button secondary shadow" type="button" @click="visualizarPecas()">
                                 <i class="zmdi zmdi-mail-send"></i>
                                 <span>Ver peças</span>
                             </button>
@@ -59,7 +55,43 @@
 </template>
 
 <script>
+import TipoVeiculoService from '../../../domain/services/TipoVeiculoService'
+
 export default {
+
+    data(){
+        return{
+            tipoVeiculos: [],
+            tipoVeiculo: ''
+        }
+    },
+    created(){
+        /* Lista de tipos de veículos */
+        this.service = new TipoVeiculoService(this.$resource);
+        this.service
+            .list()
+            .then(resposta => {
+                if(resposta.status == 200){
+                    console.log(resposta)
+                    this.tipoVeiculos = resposta.body.tipoveiculos;
+                }
+            })
+            .catch(e => {
+                console.log(e)
+            }) 
+    },
+    methods:{
+        visualizarPecas(){
+            if(this.tipoVeiculo != ''){
+                this.$router.push({
+                    name:'catalogo',
+                    params:{
+                        tipoVeiculoProp: this.tipoVeiculo,
+                    }
+                })
+            }
+        }        
+    }
     
 }
 </script>

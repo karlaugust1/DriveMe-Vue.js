@@ -24,7 +24,7 @@
                                 <span class="input-group">
                                     <span class="input-group-label zmdi zmdi-truck fa fa-truck"></span>
                                     <select class="input-group-field placeholder" id="js-form-product-type" name="vehicle-type" v-model="tipoVeiculo">
-                                        <option selected value="">Linha de Veículo</option>
+                                        <option selected value="">Veículo</option>
                                         <option :value="tipoVeiculo" v-for="tipoVeiculo in tipoVeiculos" :key="tipoVeiculo.tiveId">{{tipoVeiculo.tiveDescricao}}</option>
                                     </select>
                                 </span>
@@ -78,7 +78,7 @@
                 <div class="row small-up-1 medium-up-2 large-up-3" v-if="pecas">
                     <div class="card card-product bg-secondary block-shadow" v-for="peca in pecasFiltradas" :key="peca.pecaId">
                         <div class="card-divider">
-                            <h3 class="h4 headline">{{peca.pecaNome}}</h3>
+                            <h3 class="h4 headline elipsis">{{peca.pecaNome}}</h3>
                         </div>
 
                         <div class="card-section card-product-data flex-container align-justify">
@@ -100,7 +100,7 @@
                                 <li><i class="rh rh-fw rh-money-gear"></i>{{peca.aplicacaos[0].apliDescricao}}</li>
                             </ul>
                         </div>
-                        <img :src="peca.pecaImagems[0].peimUrl" alt="" width="295">
+                        <img :src="peca.pecaImagems[0].peimUrl" alt="" class="full-card">
                         <div class="card-section text-center">
                             <a @click="pecaDetalhes(peca)" class="button rh-button flip-y" data-open="js-modal-account"><i class="zmdi zmdi-info"></i>
                                 <span>Detalhes</span>
@@ -142,7 +142,7 @@ import TipoVeiculoService from '../../domain/services/TipoVeiculoService.js'
 import ModeloService from '../../domain/services/ModeloService.js'
 
 export default {
-
+    props: ['tipoVeiculoProp'],
     data(){
         return {
             pecas: '',
@@ -184,6 +184,10 @@ export default {
         }
     },
     created(){
+        if(this.tipoVeiculoProp){
+            console.log("odeoidjoiwejdoiew")
+            this.tipoVeiculo = this.tipoVeiculoProp
+        }
        /* Lista de montadoras */
         this.service = new MontadoraService(this.$resource);
         this.service
@@ -270,9 +274,15 @@ export default {
 <style>
 .card{
     display: inline-block !important;
-    max-width: 295px;
+    /* max-width: 295px;
     margin-right:5px; 
-    width: 295px;
+    width: 295px; */
+    max-width: 380px;
+    min-width: 380px;
+    margin-right: 5px;
+    max-height: 545px;
+    min-height: 545px;
 }
+
 </style>
 

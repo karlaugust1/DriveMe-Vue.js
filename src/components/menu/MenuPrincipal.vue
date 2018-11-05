@@ -27,19 +27,13 @@
                                 <ul class="menu vertical">
                                     <li><a href="about-us.html">Sobre Nós</a></li>
                                     <li><a href="faq.html">Como Comprar</a></li>
+                                    <li><router-link to="/peca/cadastro">Cadastrar peça</router-link></li>
                                 </ul>
                             </li><!-- /end main-menu item -->
 
                             <li>
                                 <router-link to="/catalogo">Catálogo Virtual</router-link>
                                 <!-- <a href="catalogo.html">Catálogo Virtual</a> -->
-                                <ul class="menu vertical">
-                                    <li><a href="services-cards.html">Peças</a></li>
-                                    <li><a href="services-list.html">Modelos</a></li>
-                                    <li><a href="services-single-page.html">Linhas de Veículo</a></li>
-                                    <li><a href="services-single-page.html">Montadoras</a></li>
-                                    <li><a href="services-single-page.html">Aplicação</a></li>
-                                </ul>
                             </li><!-- /end main-menu item -->
 
 

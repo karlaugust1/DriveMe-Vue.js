@@ -9,24 +9,24 @@
                 <div class="product-info js-tabs-container">
                     <!-- Botões -->
                     <ul class="secondary expanded" id="js-cadastro" data-responsive-accordion-tabs="accordion medium-tabs" data-allow-all-closed="true">
-                        <li class="tabs-title is-active">
-                            <a href="#js-descricao">Informações gerais<span class="accordion-button float-right hide-for-medium"></span></a>
+                        <li class="tabs-title is-active tab-fix" :class="informacoes? 'active-fix' : ''" style="margin-left: -20px;">
+                            <a @click="trocarPainel(1)" style="width: 250px">Informações gerais<span class="accordion-button float-right hide-for-medium"></span></a>
                         </li>
-                        <li class="tabs-title">
-                            <a href="#js-caracteristicas">Características<span class="accordion-button float-right hide-for-medium"></span></a>
+                        <li class="tabs-title tab-fix" :class="caracteristicas? 'active-fix' : ''">
+                            <a @click="trocarPainel(2)" style="width: 250px">Características<span class="accordion-button float-right hide-for-medium"></span></a>
                         </li>
-                        <li class="tabs-title">
-                            <a href="#js-especificacoes">Especificações<span class="accordion-button float-right hide-for-medium"></span></a>
+                        <li class="tabs-title tab-fix" :class="especificacoes? 'active-fix' : ''">
+                            <a @click="trocarPainel(3)" style="width: 250px">Especificações<span class="accordion-button float-right hide-for-medium"></span></a>
                         </li>
-                        <li class="tabs-title">
-                            <a href="#js-imagens">Imagens<span class="accordion-button float-right hide-for-medium"></span></a>
+                        <li class="tabs-title tab-fix" :class="imagens? 'active-fix' : ''">
+                            <a @click="trocarPainel(4)" style="width: 219px">Imagens<span class="accordion-button float-right hide-for-medium"></span></a>
                         </li>
                     </ul>
                     <div class="tabs-content" data-tabs-content="js-cadastro">
-                        <div class="tabs-panel is-active" id="js-descricao">
+                        <div class="tabs-panel is-active" id="js-descricao" v-show="informacoes">
                             <form data-abide novalidate >
-                                <div class="alert callout" data-abide-error style="display: none;">
-                                    <p><i class="fi-alert"></i> Por favor, preencha todos os campos obrigatórios.</p>
+                                <div class="alert callout" data-abide-error>
+                                    <p v-show="false"><i class="fi-alert"></i> Por favor, preencha todos os campos obrigatórios.</p>
                                 </div>
                                 <div class="row">
                                     <div class="column textarea-column">
@@ -42,6 +42,16 @@
                                             <span class="input-group">
                                                 <span class="input-group-label zmdi zmdi-money-box"></span>
                                                 <input style="padding-left: 40px; margin-bottom: 0px; margin-right: 15px;" type="number" name="valor" placeholder="Valor da peça" required v-model="peca.pecaValor" />
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="column small-12 medium-12 large-12">
+                                         <label>
+                                            <span class="input-group">
+                                                <span class="input-group-label zmdi zmdi-key"></span>
+                                                <input style="padding-left: 40px; margin-bottom: 0px;" type="text" name="nome" placeholder="Código da fábrica" required v-model="peca.pecaIdOriginal" />
                                             </span>
                                         </label>
                                     </div>
@@ -67,7 +77,6 @@
                                                 </select>
                                             </span>
                                         </label>
-
                                     </div>
                                     <div class="column small-12 medium-6 large-6">
                                         <label>
@@ -79,7 +88,6 @@
                                                 </select>
                                             </span>
                                         </label>
-
                                         <label>
                                             <span class="input-group">
                                                 <span class="input-group-label zmdi zmdi-car"></span>
@@ -89,7 +97,6 @@
                                                 </select>
                                             </span>
                                         </label>
-
                                     </div>
                                     <div class="column textarea-column">
                                         <label>
@@ -100,18 +107,13 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="text-center">
-                                    <button class="button rh-button mb0" type="button" @click="salvarPeca()"><i class="zmdi zmdi-mail-send"></i>
-                                        <span>Adicionar Produto</span>
-                                    </button>
-                                </div>
                             </form>
                         </div><!-- Fim Principal-->
                         <!-- Características -->
-                        <div class="tabs-panel" id="js-caracteristicas">
+                        <div class="tabs-panel" id="js-caracteristicas" v-show="caracteristicas">
                             <form data-abide novalidate>
-                                <div class="alert callout" data-abide-error style="display: none;">
-                                    <p><i class="fi-alert"></i> Por favor, insira ao menos uma característica.</p>
+                                <div class="alert callout" data-abide-error>
+                                    <!-- <p><i class="fi-alert"></i> Por favor, insira ao menos uma característica.</p> -->
                                 </div>
                                 <div class="row">
                                     <div class="column small-12 medium-6 large-6">
@@ -167,19 +169,12 @@
                                         </label>
                                     </div>
                                 </div>
-
-
-                                <div class="text-center">
-                                    <button class="button rh-button mb0" type="submit"><i class="zmdi zmdi-mail-send"></i>
-                                        <span>Adicionar Produto</span>
-                                    </button>
-                                </div>
                             </form>
                         </div><!-- Fim Características-->
-                        <div class="tabs-panel js-especificacoes" id="js-especificacoes">
+                        <div class="tabs-panel js-especificacoes" id="js-especificacoes" v-show="especificacoes">
                             <form data-abide novalidate>
-                                <div class="alert callout" data-abide-error style="display: none;">
-                                    <p><i class="fi-alert"></i> Por favor, preencha ao menos uma especificação.</p>
+                                <div class="alert callout" data-abide-error>
+                                    <!-- <p><i class="fi-alert"></i> Por favor, preencha ao menos uma especificação.</p> -->
                                 </div>
                                 <div class="row">
                                     <div class="column small-12 medium-6 large-6">
@@ -235,19 +230,14 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="text-center">
-                                    <button class="button rh-button mb0" type="submit"><i class="zmdi zmdi-mail-send"></i>
-                                        <span>Adicionar Produto</span>
-                                    </button>
-                                </div>
                             </form>
                         </div><!-- Fim Especificações-->
                         <!-- Imagens -->
 
-                        <div class="tabs-panel js-imagens" id="js-imagens">
+                        <div class="tabs-panel js-imagens" id="js-imagens" v-show="imagens">
                             <form data-abide novalidate>
-                                <div class="alert callout" data-abide-error style="display: none;">
-                                    <p><i class="fi-alert"></i> Por favor, insira ao menos uma imagem.</p>
+                                <div class="alert callout" data-abide-error>
+                                    <!-- <p><i class="fi-alert"></i> Por favor, insira ao menos uma imagem.</p> -->
                                 </div>
                                 <div class="row">
                                     <div class="column small-12 medium-12 large-12">
@@ -278,8 +268,8 @@
                                         </label> -->
                                     </div>
                                 </div>
-                                <div class="text-center">
-                                    <button class="button rh-button mb0" type="button" @click="teste()"><i class="zmdi zmdi-mail-send"></i>
+                                 <div class="text-center">
+                                    <button class="button rh-button mb0" style="margin-top: 15px;" type="button" @click="salvarPeca()"><i class="zmdi zmdi-mail-send"></i>
                                         <span>Adicionar Produto</span>
                                     </button>
                                 </div>
@@ -317,6 +307,10 @@ export default {
             aplicacao: '',
             tipoVeiculos: [],
             tipoVeiculo: '',
+            informacoes: true,
+            caracteristicas: false,
+            especificacoes: false,
+            imagens: false,
             PecaCaracteristica1: new PecaCaracteristica,
             PecaCaracteristica2: new PecaCaracteristica,
             PecaCaracteristica3: new PecaCaracteristica,
@@ -420,6 +414,21 @@ export default {
                 console.log(error)
             }
         },
+        trocarPainel(painel){
+            this.informacoes= false
+            this.caracteristicas= false
+            this.especificacoes= false
+            this.imagens= false
+            if(painel == 1){
+                this.informacoes = true
+            }else if(painel == 2){
+                this.caracteristicas = true
+            }else if(painel == 3){
+                this.especificacoes = true
+            }else if(painel == 4){
+                this.imagens = true
+            }
+        },
         salvarPeca(){
             this.peca.tipoVeiculos.push(this.tipoVeiculo);
             this.peca.aplicacaos.push(this.aplicacao);
@@ -475,6 +484,110 @@ export default {
 </script>
 
 <style>
+
+.callout{
+    background-color: transparent !important;
+    border-bottom: transparent;
+}
+
+.tab-fix{
+    list-style-type: none;
+    transition: all .3s;
+    color: #333;
+    background: #f8f8f8;
+    text-transform: uppercase;
+    text-align: center;
+}
+.tab-fix a:hover{
+    box-shadow: inset 0 -3px 0 0 #d6d6d6,inset 0 0 0 1px #e6e6e6;
+}
+.active-fix a{
+    color: #f8f8f8 !important;
+    background: #333 !important;
+    box-shadow: inset 0 -3px 0 0 #ad9574,inset 0 0 0 1px #e6e6e6,0 1px 0 0 #ad9574;
+}
+
+/* .tabs {
+    z-index: 1;
+    border: none;
+    background: 0 0;
+}
+
+.tabs-panel {
+    height: inherit;
+}
+
+.tabs-title>a {
+    padding-right: 1rem;
+    padding-left: 1rem;
+    transition: all .3s;
+    color: #333;
+    background: #f8f8f8;
+}
+
+.tabs-title>a:focus,.tabs-title>a:hover {
+    color: currentColor;
+    background: #fff;
+}
+
+.tabs-title.is-active>a {
+    color: currentColor;
+    background-color: #fff;
+}
+
+.tabs:not(.vertical) .tabs-title>a:focus,.tabs:not(.vertical) .tabs-title>a:hover {
+    box-shadow: inset 0 -3px 0 0 #d6d6d6,inset 0 0 0 1px #e6e6e6;
+}
+
+.tabs:not(.vertical) .tabs-title.is-active>a {
+    box-shadow: inset 0 -3px 0 0 #ad9574,inset 0 0 0 1px #e6e6e6,0 1px 0 0 #ad9574;
+}
+
+.tabs.vertical .tabs-title>a:focus,.tabs.vertical .tabs-title>a:hover {
+    box-shadow: inset -3px 0 0 0 #d6d6d6,inset 0 0 0 1px #e6e6e6;
+}
+
+.tabs.vertical .tabs-title.is-active>a {
+    box-shadow: inset -3px 0 0 0 #ad9574,inset 0 0 0 1px #e6e6e6,1px 0 0 0 #ad9574;
+}
+
+.tabs[class*=secondary] .tabs-title.is-active>a {
+    color: #fff;
+    background-color: #333;
+}
+
+.is-active .accordion-button:before {
+    transform: rotate(-90deg);
+}
+
+.is-active .accordion-button:after {
+    transform: rotate(-180deg);
+}
+
+.is-active>.accordion-title {
+    border-bottom-width: 2px;
+    border-bottom-color: #ad9574;
+    background-color: inherit;
+}
+
+[class*=secondary]>.is-active>.accordion-title {
+    color: #fff;
+    border-color: #333 #333 #ad9574;
+    background-color: #333;
+}
+
+[class*=primary]>.is-active>.accordion-title {
+    border-color: #ad9574 #ad9574 #fff;
+    background-color: #ad9574;
+}
+
+.primary>.is-active>.accordion-title {
+    border-bottom-width: 0;
+}
+
+[class*=primary]>.is-active .accordion-button:after,[class*=primary]>.is-active .accordion-button:before {
+    background-color: #333;
+} */
 
 </style>
 

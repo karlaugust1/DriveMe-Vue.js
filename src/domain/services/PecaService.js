@@ -12,4 +12,12 @@ export default class PecaService{
     get(id){
         return this._resource.query({id});
     }
+    listBestProducts(resource){
+        this._resource = resource('pecas/melhores');
+        return this._resource.query();
+    }
+    listPopularParts(resource){
+        this._resource = resource('pecas/populares');
+        return this._resource.query();
+    }
 }

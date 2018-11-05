@@ -6,7 +6,7 @@ import PecaDetalhes from "./components/peca/PecaDetalhes.vue"
 export const routes = [
     { path: '', component: Home },
     { path: '*', component: Home },
-    { path: '/catalogo', component: Catalogo },
-    { path: '/peca/cadastro', component: PecaCadastro },
+    { path: '/catalogo', component: Catalogo, props: true, name: 'catalogo' },
+    { path: '/peca/cadastro', component: PecaCadastro, name: 'peca-cadastro' },
     { path: '/peca/:id', component: PecaDetalhes, props: true, name: 'peca-detalhes'},
 ]
