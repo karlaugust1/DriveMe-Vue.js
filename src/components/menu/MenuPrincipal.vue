@@ -27,7 +27,7 @@
                                 <ul class="menu vertical">
                                     <li><a href="about-us.html">Sobre Nós</a></li>
                                     <li><a href="faq.html">Como Comprar</a></li>
-                                    <li><router-link to="/peca/cadastro">Cadastrar peça</router-link></li>
+                                    <!-- <li><router-link to="/peca/cadastro">Cadastrar peça</router-link></li> -->
                                 </ul>
                             </li><!-- /end main-menu item -->
 
@@ -38,9 +38,9 @@
 
 
 
-                            <li>
+                            <!-- <li>
                                 <a href="#">Carrinho</a>
-                            </li><!-- /end main-menu item -->
+                            </li> -->
                             
                             <li>
                                 <a @click.prevent="logoff" v-if="logado">Sair</a>
@@ -48,8 +48,8 @@
                             </li><!-- /end main-menu item -->
 
                             <li v-if="logado">
-                                <a v-if="this.$usuario.tipoUsuario.tiusId == 2 && logado">Área do Administrador</a>
-                                <a v-else>bem vindo, {{this.$usuario.usuaNome}}</a>
+                                <router-link to="/administrador" v-if="this.$usuario.tipoUsuario.tiusId == 1 && logado"><a>Área do Administrador</a></router-link>
+                                <router-link to="/cliente" v-else>bem vindo, {{this.$usuario.usuaNome}}</router-link>
                             </li><!-- /end main-menu item -->                        
 
                         </ul><!-- /end .main-menu -->
@@ -158,6 +158,9 @@ export default {
         logoff(){
             this.logado = false,
             Vue.prototype.$usuario = new Usuario();
+            if(this.$router.currentRoute.name == 'menu-adm' || this.$router.currentRoute.name == 'menu-cliente'){
+                this.$router.push({ path: '/' })
+            }
         },
         cadastrarUsuario(){
             if(this.confirmacaoSenha == this.usuario.usuaSenha){
@@ -168,6 +171,7 @@ export default {
                         if(resposta.status == 200){
                             if(resposta.body.status == "SUCCESS"){
                                 Vue.prototype.$usuario = resposta.body.usuario
+                                this.usuario = new Usuario()
                                 this.logado = true
                                 this.hide();
                             }else{
@@ -188,6 +192,7 @@ export default {
                 .then(resposta => {
                     if(resposta.status == 200){
                         Vue.prototype.$usuario = resposta.body.usuario
+                        this.usuario = new Usuario()
                         this.logado = true
                         this.hide();
                     }

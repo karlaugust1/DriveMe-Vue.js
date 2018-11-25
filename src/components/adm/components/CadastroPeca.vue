@@ -25,7 +25,7 @@
                     <div class="tabs-content" data-tabs-content="js-cadastro">
                         <div class="tabs-panel is-active" id="js-descricao" v-show="informacoes">
                             <form data-abide novalidate >
-                                <div class="alert callout" data-abide-error>
+                                <div class="alert callout callout-hide" data-abide-error>
                                     <p v-show="false"><i class="fi-alert"></i> Por favor, preencha todos os campos obrigatórios.</p>
                                 </div>
                                 <div class="row">
@@ -107,12 +107,15 @@
                                         </label>
                                     </div>
                                 </div>
+                                <div class="alert callout" data-abide-error v-show="erro">
+                                    <p><i class="fi-alert"></i>Por favor, preencha todos os campos obrigatórios.</p>
+                                </div>
                             </form>
                         </div><!-- Fim Principal-->
                         <!-- Características -->
                         <div class="tabs-panel" id="js-caracteristicas" v-show="caracteristicas">
                             <form data-abide novalidate>
-                                <div class="alert callout" data-abide-error>
+                                <div class="alert callout callout-hide" data-abide-error>
                                     <!-- <p><i class="fi-alert"></i> Por favor, insira ao menos uma característica.</p> -->
                                 </div>
                                 <div class="row">
@@ -169,11 +172,14 @@
                                         </label>
                                     </div>
                                 </div>
+                                <div class="alert callout" data-abide-error v-show="erro">
+                                    <p><i class="fi-alert"></i>Por favor, preencha todos os campos obrigatórios.</p>
+                                </div>
                             </form>
                         </div><!-- Fim Características-->
                         <div class="tabs-panel js-especificacoes" id="js-especificacoes" v-show="especificacoes">
                             <form data-abide novalidate>
-                                <div class="alert callout" data-abide-error>
+                                <div class="alert callout callout-hide" data-abide-error>
                                     <!-- <p><i class="fi-alert"></i> Por favor, preencha ao menos uma especificação.</p> -->
                                 </div>
                                 <div class="row">
@@ -231,12 +237,15 @@
                                     </div>
                                 </div>
                             </form>
+                            <div class="alert callout" data-abide-error v-show="erro">
+                                <p><i class="fi-alert"></i>Por favor, preencha todos os campos obrigatórios.</p>
+                            </div>
                         </div><!-- Fim Especificações-->
                         <!-- Imagens -->
 
                         <div class="tabs-panel js-imagens" id="js-imagens" v-show="imagens">
                             <form data-abide novalidate>
-                                <div class="alert callout" data-abide-error>
+                                <div class="alert callout callout-hide" data-abide-error>
                                     <!-- <p><i class="fi-alert"></i> Por favor, insira ao menos uma imagem.</p> -->
                                 </div>
                                 <div class="row">
@@ -268,7 +277,10 @@
                                         </label> -->
                                     </div>
                                 </div>
-                                 <div class="text-center">
+                                <div class="alert callout" data-abide-error v-show="erro">
+                                    <p><i class="fi-alert"></i>Por favor, preencha todos os campos obrigatórios.</p>
+                                </div>
+                                <div class="text-center">
                                     <button class="button rh-button mb0" style="margin-top: 15px;" type="button" @click="salvarPeca()"><i class="zmdi zmdi-mail-send"></i>
                                         <span>Adicionar Produto</span>
                                     </button>
@@ -283,17 +295,17 @@
 </template>
 
 <script>
-import PecaService from "../../domain/services/PecaService.js";
-import MontadoraService from '../../domain/services/MontadoraService.js';
-import AplicacaoService from '../../domain/services/AplicacaoService.js';
-import ModeloService from '../../domain/services/ModeloService.js';
-import TipoVeiculoService from '../../domain/services/TipoVeiculoService.js';
+import PecaService from "../../../domain/services/PecaService.js";
+import MontadoraService from '../../../domain/services/MontadoraService.js';
+import AplicacaoService from '../../../domain/services/AplicacaoService.js';
+import ModeloService from '../../../domain/services/ModeloService.js';
+import TipoVeiculoService from '../../../domain/services/TipoVeiculoService.js';
 import vueDropzone from "vue2-dropzone";
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
-import Peca from "../../domain/models/Peca.js";
-import PecaCaracteristica from "../../domain/models/PecaCaracteristica.js";
-import PecaEspecificacao from "../../domain/models/PecaEspecificacao.js";
-import PecaImagem from "../../domain/models/PecaImagem.js";
+import Peca from "../../../domain/models/Peca.js";
+import PecaCaracteristica from "../../../domain/models/PecaCaracteristica.js";
+import PecaEspecificacao from "../../../domain/models/PecaEspecificacao.js";
+import PecaImagem from "../../../domain/models/PecaImagem.js";
 
 export default {
     data(){
@@ -311,6 +323,7 @@ export default {
             caracteristicas: false,
             especificacoes: false,
             imagens: false,
+            erro: false,
             PecaCaracteristica1: new PecaCaracteristica,
             PecaCaracteristica2: new PecaCaracteristica,
             PecaCaracteristica3: new PecaCaracteristica,
@@ -430,40 +443,131 @@ export default {
             }
         },
         salvarPeca(){
-            this.peca.tipoVeiculos.push(this.tipoVeiculo);
-            this.peca.aplicacaos.push(this.aplicacao);
-            this.peca.montadoras.push(this.montadora);
-            this.peca.modelos.push(this.modelo);
-            this.peca.pecaCaracteristicas.push(this.PecaCaracteristica1);
-            this.peca.pecaCaracteristicas.push(this.PecaCaracteristica2);
-            this.peca.pecaCaracteristicas.push(this.PecaCaracteristica3);
-            this.peca.pecaCaracteristicas.push(this.PecaCaracteristica4);
-            this.peca.pecaEspecificacaos.push(this.PecaEspecificacao1);
-            this.peca.pecaEspecificacaos.push(this.PecaEspecificacao2);
-            this.peca.pecaEspecificacaos.push(this.PecaEspecificacao3);
-            this.peca.pecaEspecificacaos.push(this.PecaEspecificacao4);
-            this.peca.pecaEspecificacaos.push(this.PecaEspecificacao5);
-            this.peca.pecaEspecificacaos.push(this.PecaEspecificacao6);
-            this.peca.pecaEspecificacaos.push(this.PecaEspecificacao7);
-            this.peca.pecaEspecificacaos.push(this.PecaEspecificacao8);
 
-            console.log(this.peca)
+            var salvar = true
+            if(this.peca.pecaNome == "" || this.peca.pecaValor == "" || this.peca.pecaIdOriginal == "" || this.peca.pecaDescricao == ""){
+                this.erro = true
+                salvar = false;
+                console.log('shitif')
+            }
+        
+            if(this.tipoVeiculo == ""){
+                this.erro = true
+                salvar = false;
+                console.log('55 if')
+            }else if(this.aplicacao == ""){
+                this.erro = true
+                salvar = false;
+                console.log('56 if')
+            }else if(this.montadora == ""){
+                this.erro = true
+                salvar = false;
+                console.log('57 if')
+            }else if(this.modelo == ""){
+                this.erro = true
+                salvar = false;
+                console.log('58 if')
+            }
 
-            this.service = new PecaService(this.$resource);
-            this.service
-                .post(this.peca)
-                .then(resposta => {
-                    if(resposta.body.status === 'SUCCESS'){
-                        this.peca = new Peca();
-                        this.tipoVeiculo = new tipoVeiculo();
-                        this.aplicacao = new Aplicacao();
-                        this.montadora = new Montadora();
-                        this.modelo = new Modelo();
-                    }
-                })
-                .catch(e => {
-                    console.log(e)
-                })
+            if(this.PecaCaracteristica1.pecaTitulo == "" && this.PecaCaracteristica1.pecaCaracteristica == ""){
+                this.erro = true
+                salvar = false;
+                console.log('primeiro if')
+            }
+            
+            if(this.PecaCaracteristica2.pecaTitulo == "" && this.PecaCaracteristica2.pecaCaracteristica == ""){
+                this.erro = true
+                salvar = false;
+                console.log('2 if')
+            }
+            
+            if(this.PecaCaracteristica3.pecaTitulo == "" && this.PecaCaracteristica3.pecaCaracteristica == ""){
+                this.erro = true
+                salvar = false;
+                console.log('3 if')
+            }
+            
+            if(this.PecaCaracteristica4.pecaTitulo == "" && this.PecaCaracteristica4.pecaCaracteristica == ""){
+                this.erro = true
+                salvar = false;
+                console.log('4 if')
+            }
+            
+            if(this.PecaEspecificacao1.pecaEspecificacao == ""){
+                this.erro = true
+                salvar = false;
+                console.log('5 if')
+            }
+            if(this.PecaEspecificacao2.pecaEspecificacao == ""){
+                this.erro = true
+                salvar = false;
+                console.log('6 if')
+            }
+            if(this.PecaEspecificacao3.pecaEspecificacao == ""){
+                this.erro = true
+                salvar = false;
+                console.log('7 if')
+            }
+            if(this.PecaEspecificacao4.pecaEspecificacao == ""){
+                this.erro = true
+                salvar = false;
+                console.log('8 if')
+            }
+            if(this.PecaEspecificacao5.pecaEspecificacao == ""){
+                this.erro = true
+                salvar = false;
+                console.log('9 if')
+            }
+            if(this.PecaEspecificacao6.pecaEspecificacao == ""){
+                this.erro = true
+                salvar = false;
+                console.log('10 if')
+            }
+            if(this.PecaEspecificacao7.pecaEspecificacao == ""){
+                this.erro = true
+                salvar = false;
+                console.log('11 if')
+            }
+            if(this.PecaEspecificacao8.pecaEspecificacao == ""){
+                this.erro = true
+                salvar = false;
+                console.log('12 if')
+            }
+
+            if(salvar){
+                this.peca.tipoVeiculos.push(this.tipoVeiculo);
+                this.peca.aplicacaos.push(this.aplicacao);
+                this.peca.montadoras.push(this.montadora);
+                this.peca.modelos.push(this.modelo);
+                
+                this.peca.pecaCaracteristicas.push(this.PecaCaracteristica1);
+                this.peca.pecaCaracteristicas.push(this.PecaCaracteristica2);
+                this.peca.pecaCaracteristicas.push(this.PecaCaracteristica3);
+                this.peca.pecaCaracteristicas.push(this.PecaCaracteristica4);
+                this.peca.pecaEspecificacaos.push(this.PecaEspecificacao1);
+                this.peca.pecaEspecificacaos.push(this.PecaEspecificacao2);
+                this.peca.pecaEspecificacaos.push(this.PecaEspecificacao3);
+                this.peca.pecaEspecificacaos.push(this.PecaEspecificacao4);
+                this.peca.pecaEspecificacaos.push(this.PecaEspecificacao5);
+                this.peca.pecaEspecificacaos.push(this.PecaEspecificacao6);
+                this.peca.pecaEspecificacaos.push(this.PecaEspecificacao7);
+                this.peca.pecaEspecificacaos.push(this.PecaEspecificacao8);
+    
+            
+    
+                this.service = new PecaService(this.$resource);
+                this.service
+                    .post(this.peca)
+                    .then(resposta => {
+                        if(resposta.body.status === 'SUCCESS'){
+                            this.peca = new Peca();
+                            this.$router.replace('/administrador')
+                        }
+                    })
+                    .catch(e => {
+                        console.log(e)
+                    })
+            }
         },
 
         teste(){
@@ -485,7 +589,7 @@ export default {
 
 <style>
 
-.callout{
+.callout-hide{
     background-color: transparent !important;
     border-bottom: transparent;
 }
@@ -506,88 +610,6 @@ export default {
     background: #333 !important;
     box-shadow: inset 0 -3px 0 0 #ad9574,inset 0 0 0 1px #e6e6e6,0 1px 0 0 #ad9574;
 }
-
-/* .tabs {
-    z-index: 1;
-    border: none;
-    background: 0 0;
-}
-
-.tabs-panel {
-    height: inherit;
-}
-
-.tabs-title>a {
-    padding-right: 1rem;
-    padding-left: 1rem;
-    transition: all .3s;
-    color: #333;
-    background: #f8f8f8;
-}
-
-.tabs-title>a:focus,.tabs-title>a:hover {
-    color: currentColor;
-    background: #fff;
-}
-
-.tabs-title.is-active>a {
-    color: currentColor;
-    background-color: #fff;
-}
-
-.tabs:not(.vertical) .tabs-title>a:focus,.tabs:not(.vertical) .tabs-title>a:hover {
-    box-shadow: inset 0 -3px 0 0 #d6d6d6,inset 0 0 0 1px #e6e6e6;
-}
-
-.tabs:not(.vertical) .tabs-title.is-active>a {
-    box-shadow: inset 0 -3px 0 0 #ad9574,inset 0 0 0 1px #e6e6e6,0 1px 0 0 #ad9574;
-}
-
-.tabs.vertical .tabs-title>a:focus,.tabs.vertical .tabs-title>a:hover {
-    box-shadow: inset -3px 0 0 0 #d6d6d6,inset 0 0 0 1px #e6e6e6;
-}
-
-.tabs.vertical .tabs-title.is-active>a {
-    box-shadow: inset -3px 0 0 0 #ad9574,inset 0 0 0 1px #e6e6e6,1px 0 0 0 #ad9574;
-}
-
-.tabs[class*=secondary] .tabs-title.is-active>a {
-    color: #fff;
-    background-color: #333;
-}
-
-.is-active .accordion-button:before {
-    transform: rotate(-90deg);
-}
-
-.is-active .accordion-button:after {
-    transform: rotate(-180deg);
-}
-
-.is-active>.accordion-title {
-    border-bottom-width: 2px;
-    border-bottom-color: #ad9574;
-    background-color: inherit;
-}
-
-[class*=secondary]>.is-active>.accordion-title {
-    color: #fff;
-    border-color: #333 #333 #ad9574;
-    background-color: #333;
-}
-
-[class*=primary]>.is-active>.accordion-title {
-    border-color: #ad9574 #ad9574 #fff;
-    background-color: #ad9574;
-}
-
-.primary>.is-active>.accordion-title {
-    border-bottom-width: 0;
-}
-
-[class*=primary]>.is-active .accordion-button:after,[class*=primary]>.is-active .accordion-button:before {
-    background-color: #333;
-} */
 
 </style>
 

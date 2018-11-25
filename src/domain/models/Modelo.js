@@ -7,7 +7,6 @@ export default class Modelo{
         this.modeDescricao = modeDescricao;
         this.modeAno = modeAno;
         this.modeIcone = modeIcone;
-        
     }
 
 }

@@ -6309,6 +6309,7 @@ main+.section {
 .h-carousel-item {
     background-repeat: no-repeat;
     background-position: center;
+    background-image: url("../../../static/hero/car-1.jpg")
 }
 
 .hero-content {

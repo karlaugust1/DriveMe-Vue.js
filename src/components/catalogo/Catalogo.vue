@@ -62,6 +62,7 @@
                         <div class="column small-12 medium-5 large-8 text-center">
                             <label>
                                 <input class="input-group-field" type="text" placeholder="Busque pelo nome da peça..." v-model="procura">
+                                <input class="input-group-field" type="text" style="margin-top: 15px;" placeholder="Busque pelo código original da peça..." v-model="procuraCodigo">
                             </label>
                         </div>
                         <!-- <div class="column small-12 medium-5 text-center">
@@ -79,6 +80,7 @@
                     <div class="card card-product bg-secondary block-shadow" v-for="peca in pecasFiltradas" :key="peca.pecaId">
                         <div class="card-divider">
                             <h3 class="h4 headline elipsis">{{peca.pecaNome}}</h3>
+                            <h6 class="h6 elipsis" style="font-size: 12px;">{{peca.pecaIdOriginal}}</h6>
                         </div>
 
                         <div class="card-section card-product-data flex-container align-justify">
@@ -96,7 +98,7 @@
 
                             <ul class="card-product-features">
                                 <li><i :class="'driveme-' + peca.montadoras[0].montIcone"></i></li>
-                                <li><i :class="'rh rh-fw ' + peca.tipoVeiculos[0].tiveIcone"></i>{{peca.tipoVeiculos[0].tiveDescricao}}</li>
+                                <li><i :class="'rh rh-fw rh-' + peca.tipoVeiculos[0].tiveIcone"></i>{{peca.tipoVeiculos[0].tiveDescricao}}</li>
                                 <li><i class="rh rh-fw rh-money-gear"></i>{{peca.aplicacaos[0].apliDescricao}}</li>
                             </ul>
                         </div>
@@ -147,6 +149,7 @@ export default {
         return {
             pecas: '',
             procura: '',
+            procuraCodigo: '',
             montadora: '',
             montadoras: [],
             aplicacao: '',
@@ -178,14 +181,17 @@ export default {
             }
             if(this.procura){
                 let exp = new RegExp(this.procura.trim(), 'i');
-               listaFiltrada = listaFiltrada.filter(peca => exp.test(peca.pecaNome));
+                listaFiltrada = listaFiltrada.filter(peca => exp.test(peca.pecaNome));
+            }
+            if(this.procuraCodigo){
+                let exp = new RegExp(this.procuraCodigo.trim(), 'i');
+                listaFiltrada = listaFiltrada.filter(peca => exp.test(peca.pecaIdOriginal));
             }
             return listaFiltrada;
         }
     },
     created(){
         if(this.tipoVeiculoProp){
-            console.log("odeoidjoiwejdoiew")
             this.tipoVeiculo = this.tipoVeiculoProp
         }
        /* Lista de montadoras */

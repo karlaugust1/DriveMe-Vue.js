@@ -64,10 +64,10 @@
                             </a>
                         </div>
                         <div class="product-meta-item">
-                            <a class="media-object download-widget" href="#">
+                            <a class="media-object download-widget" @click="adicionarWishlist()">
                                 <span class="media-object-section"><i class="rh rh-wish"></i></span>
                                 <span class="media-object-section download-widget-text">
-                                    <span>Realizar</span><br><span>compra rápida</span>
+                                    <span>Adicionar</span><br><span>lista de desejos</span>
                                 </span>
                             </a>
                         </div>
@@ -100,8 +100,7 @@
                         <small>[ {{peca.pecaAvaliacaos.length}} avaliações ]</small>
                     </div>
                     <div class="card-divider" style="width: 1164px;">
-                        <button class="button rh-button flip-y right-vb" type="submit" style="
-                        border-bottom-color: rgb(105, 212, 132);" id="carrinho"><i class="zmdi zmdi-shopping-cart fa fa-reply"></i>
+                        <button class="button rh-button flip-y right-vb" type="button" @click="adiconarPeca()" style="border-bottom-color: rgb(105, 212, 132);" id="carrinho"><i class="zmdi zmdi-shopping-cart fa fa-reply"></i>
                             <span>Adicionar ao carrinho</span>
                         </button>
                     </div>
@@ -129,6 +128,67 @@
 
                     <!-- Tabs content -->
                     <div class="tabs-content" data-tabs-content="js-product-info">
+
+                        <div class="tabs-panel is-active" id="js-product-overview">
+                            <p>{{peca.pecaDescricao}}</p>
+                            <section class="section-in-post">
+                                <div class="block-header border align-center text-center">
+                                    <hr class="dotted">
+                                    <h3 class="headline">Informações Gerais</h3>
+                                    <hr class="dotted">
+                                </div>
+                                <div class="row align-center">
+                                    <div class="column small-12 medium-6 features">
+
+                                        <div class="media-object">
+                                            <div class="media-object-section">
+                                                <div class="icon-box"><i :class="'driveme-' + peca.montadoras[0].montIcone"></i></div>
+                                            </div>
+                                            <div class="media-object-section">
+                                                <h3 class="h5">Montadora</h3>
+                                                <p>{{peca.montadoras[0].montDescricao}}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="media-object">
+                                            <div class="media-object-section">
+                                                <div class="icon-box"><i :class="'rh rh-fw rh-' + peca.tipoVeiculos[0].tiveIcone"></i></div>
+                                            </div>
+                                            <div class="media-object-section">
+                                                <h3 class="h5">Tipo de veículo</h3>
+                                                <p>{{peca.tipoVeiculos[0].tiveDescricao}}</p>
+                                            </div>
+                                        </div>
+
+                                    </div><!-- /end .features -->
+
+                                    <div class="column small-12 medium-6 features">
+
+                                        <div class="media-object">
+                                            <div class="media-object-section">
+                                                <div class="icon-box"><i class="rh rh-fw rh-money-gear"></i></div>
+                                            </div>
+                                            <div class="media-object-section">
+                                                <h3 class="h5">Aplicação</h3>
+                                                <p>{{peca.aplicacaos[0].apliDescricao}}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="media-object">
+                                            <div class="media-object-section">
+                                                <div class="icon-box"><i class="zmdi zmdi-car"></i></div>
+                                            </div>
+                                            <div class="media-object-section">
+                                                <h3 class="h5">Modelo</h3>
+                                                <p>{{peca.modelos[0].modeDescricao}} | {{peca.modelos[0].modeAno}}</p>
+                                            </div>
+                                        </div>
+
+                                    </div><!-- /end .features -->
+
+                                </div><!-- /end .row -->
+                            </section><!-- /end .section-in-post -->
+                        </div><!-- /end .tabs-panel -->
 
                         <!-- Product description -->
                         <div class="tabs-panel is-active" id="js-product-overview">
@@ -418,6 +478,9 @@
 <script>
 
 import PecaService from '../../domain/services/PecaService.js'
+import PedidoService from '../../domain/services/PedidoService.js'
+import WishlistService from '../../domain/services/WishlistService.js'
+import Wishlist from '../../domain/models/Wishlist.js'
 import PecaAvaliacaoService from '../../domain/services/PecaAvaliacaoService.js'
 
 import Usuario from '../../domain/models/Usuario.js'
@@ -431,6 +494,7 @@ export default {
             moment: moment,
             peca: '',
             montar: false,
+            wishlist: new Wishlist(),
             estrela1: '/static/star.svg',
             estrela2: '/static/star.svg',
             estrela3: '/static/star.svg',
@@ -464,32 +528,71 @@ export default {
     },
     methods:{
         salvarComentario(){
-            this.service = new PecaAvaliacaoService(this.$resource);
-            this.pecaAvaliacao.usuario = new Usuario(1);
-            this.pecaAvaliacao.idPeca = this.peca.pecaId;
-            this.service
-                .post(this.pecaAvaliacao)
-                .then(resposta => {
-                    if(resposta.body.status === 'SUCCESS'){
-                        this.peca.pecaAvaliacaos.unshift(resposta.body.avaliacao)
-                        this.pecaAvaliacao.peavDescricao = '',
-                        this.estrela1 = '/static/star.svg',
-                        this.estrela2 = '/static/star.svg',
-                        this.estrela3 = '/static/star.svg',
-                        this.estrela4 = '/static/star.svg',
-                        this.estrela5 = '/static/star.svg'
-                    }
-                })
-                .catch(e => {
-                    console.log(e)
-                })
+            if(this.$usuario && this.$usuario.usuaNome != ''){
+                this.service = new PecaAvaliacaoService(this.$resource);
+                this.pecaAvaliacao.usuario = new Usuario(this.$usuario.usuaId);
+                this.pecaAvaliacao.idPeca = this.peca.pecaId;
+                this.service
+                    .post(this.pecaAvaliacao)
+                    .then(resposta => {
+                        if(resposta.body.status === 'SUCCESS'){
+                            this.peca.pecaAvaliacaos.unshift(resposta.body.avaliacao)
+                            this.pecaAvaliacao.peavDescricao = '',
+                            this.estrela1 = '/static/star.svg',
+                            this.estrela2 = '/static/star.svg',
+                            this.estrela3 = '/static/star.svg',
+                            this.estrela4 = '/static/star.svg',
+                            this.estrela5 = '/static/star.svg'
+                        }
+                    })
+                    .catch(e => {
+                        console.log(e)
+                    })
+            }else{
+                console.log('else')
+                this.$modal.show('hello-world');
+            }
         },
         abrirFoto(id){
             $(document).ready(function (){
                 var $lg = $('#'+id+'lightgallery');
                 $('#'+id+'lightgallery').lightGallery();
-                //$lg.lightgallery();
             })
+        },
+        adiconarPeca(){
+            if(this.$usuario && this.$usuario.usuaNome != ''){
+                this.service = new PedidoService(this.$resource);
+                this.service
+                    .addPeca(this.peca, this.$usuario.usuaId, this.$resource)
+                    .then(resposta => {
+                        alert("Adicionado com sucesso ao carrinho")
+                        console.log(resposta)
+                    }).catch( erro => {
+                        console.log(erro)
+                    })
+            }else{
+                console.log('else')
+                this.$modal.show('hello-world');
+            }
+        },
+        adicionarWishlist(){
+            if(this.$usuario && this.$usuario.usuaNome != ''){
+                this.wishlist.usuario = this.$usuario;
+                this.wishlist.peca = this.peca;
+                this.service = new WishlistService(this.$resource);
+                this.service
+                    .addPeca(this.wishlist, this.$resource)
+                    .then(resposta => {
+                        alert("Adicionado com sucesso à lista de desejos")
+                        console.log(resposta)
+                    }).catch( erro => {
+                        console.log(erro)
+                    })
+            }else{
+                console.log('else')
+                this.$modal.show('hello-world');
+            }
+
         },
         mouseover1estrela(){
            if(this.estrela1 == '/static/star.svg'){
@@ -498,7 +601,7 @@ export default {
                this.estrela1 = '/static/star.svg'
            }
         },
-         mouseover2estrela(){
+        mouseover2estrela(){
            if(this.estrela2 == '/static/star.svg'){
                 this.estrela1 = '/static/star1.svg'
                 this.estrela2 = '/static/star1.svg'
@@ -506,7 +609,7 @@ export default {
                this.estrela2 = '/static/star.svg'
            }
         },
-         mouseover3estrela(){
+        mouseover3estrela(){
            if(this.estrela3 == '/static/star.svg'){
                 this.estrela1 = '/static/star1.svg'
                 this.estrela2 = '/static/star1.svg'
@@ -515,7 +618,7 @@ export default {
                this.estrela3 = '/static/star.svg'
            }
         },
-         mouseover4estrela(){
+        mouseover4estrela(){
            if(this.estrela4 == '/static/star.svg'){
                 this.estrela1 = '/static/star1.svg'
                 this.estrela2 = '/static/star1.svg'
@@ -525,7 +628,7 @@ export default {
                this.estrela4 = '/static/star.svg'
            }
         },
-         mouseover5estrela(){
+        mouseover5estrela(){
            if(this.estrela5 == '/static/star.svg'){
                 this.estrela1 = '/static/star1.svg'
                 this.estrela2 = '/static/star1.svg'
