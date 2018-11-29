@@ -160,6 +160,9 @@ export default {
             modelos: [],
         }
     },
+    mounted(){
+        window.scrollTo(0,0)
+    },
     computed:{
         pecasFiltradas(){
             var listaFiltrada = this.pecas;

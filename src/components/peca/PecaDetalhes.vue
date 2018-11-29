@@ -3,8 +3,8 @@
         <div class="row fleet-details">
             <div class="column small-12 large-12">
 
-                <div class="card card-product-large">
-                    <div class="card-divider" style="width: 1170px;">
+                <div class="card-product-large">
+                    <div class="card-divider" style=" ;">
                         <div class="block-header border align-center text-center" style="padding-top:10px;">
                             <hr class="dotted">
                             <h3 class="headline">{{peca.pecaNome}}</h3>
@@ -12,7 +12,9 @@
                         </div>
                     </div>
                     <!-- Imagem Grande -->
-                    <div class="content-slider rh-thumbnail" id="js-slick-main" style="width: 1170px;">
+                    <center>
+
+                    <div class="content-slider rh-thumbnail" id="js-slick-main" style=" ;margin-bottom: -44px;">
 
                         <!-- <div class="item">
                             <a class="image-hover" :href="peca.pecaImagems[0].peimUrl" data-rel="lightcase-zoom:vehiclePreview">
@@ -27,7 +29,7 @@
                                 <div class="image-hover-buttons"><span class="button-zoom"></span></div>
                             </a>
                         </div> -->
-                        <div class="item" :id="peca.pecaId + 'lightgallery'">
+                        <div class="item" :id="peca.pecaId + 'lightgallery'" style="width: 900px">
                             <div v-for="(foto, index) in peca.pecaImagems" :key="foto.peimId" :href="peca.pecaImagems[index].peimUrl" v-show="index == 0" >
                                 <a class="image-hover" :href="foto.peimId" >
                                     <img :src="foto.peimUrl" alt="">
@@ -37,26 +39,17 @@
                         </div>
 
                     </div> <!-- /end .content-slider -->
+                    </center>
 
-                    <div class="card-divider" style="width: 1170px;">
-                        <!-- Carrossel de Imagens -->
-                        <div class="content-slider-thumbs" >
-                            <!-- <div v-for="imagem in peca.pecaImagems" :key="imagem.peimId" style="width: 0px !important; display: inline-block">
-                                <img class="grayscale"  :id="peca.pecaId + 'lightgallery'" :src="imagem.peimUrl" alt="" width="100px" >
-                            </div> -->
-                            <!-- <div class="content-slider-item">
-                                <img class="grayscale" src="img/fleet/fleet-s-thumbnail-02.html" alt="">
-                            </div> -->
-                        </div><!-- /end .content-slider-thumbs -->
-                    </div>
+                   
                 </div><!-- /end .card-product-large -->
             </div><!-- /end .column -->
             <div class="column small-12 large-12">
-                <div class="card-divider" style="width: 1170px; margim-bottom: 15px;">  
+                <div class="card-divider" style=" ; margim-bottom: 15px;">  
                     <!-- Product preview metadata -->
                     <div class="product-meta flex-container">
                         <div class="product-meta-item">
-                            <a class="media-object download-widget" href="#">
+                            <a class="media-object download-widget" @click="imprimirPagina()">
                                 <span class="media-object-section"><i class="rh rh-pdf"></i></span>
                                 <span class="media-object-section download-widget-text">
                                     <span>Baixar</span><br><span>informações</span>
@@ -192,7 +185,6 @@
 
                         <!-- Product description -->
                         <div class="tabs-panel is-active" id="js-product-overview">
-                            <p>{{peca.pecaDescricao}}</p>
                             <section class="section-in-post">
                                 <div class="block-header border align-center text-center">
                                     <hr class="dotted">
@@ -509,6 +501,9 @@ export default {
             }
         }
     },
+    mounted(){
+        window.scrollTo(0,0)
+    },
     created() {
 
         this.service = new PecaService(this.$resource);
@@ -527,6 +522,9 @@ export default {
                 })
     },
     methods:{
+        imprimirPagina(){
+            window.print();
+        }, 
         salvarComentario(){
             if(this.$usuario && this.$usuario.usuaNome != ''){
                 this.service = new PecaAvaliacaoService(this.$resource);

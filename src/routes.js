@@ -8,6 +8,8 @@ import CadastroTipoVeiculo from "./components/adm/components/CadastroTipoVeiculo
 import CadastroModelo from "./components/adm/components/CadastroModelo.vue"
 import CadastroAplicacao from "./components/adm/components/CadastroAplicacao.vue"
 import MenuClientes from "./components/clientes/MenuClientes.vue"
+import SobreNos from "./components/empresa/Sobre-nos.vue"
+import AEmpresa from "./components/empresa/A-empresa.vue"
 
 export const routes = [
     { path: '', component: Home },
@@ -22,4 +24,6 @@ export const routes = [
     { path: '/peca/:id', component: PecaDetalhes, props: true, name: 'peca-detalhes'},
     { path: '/administrador', component: MenuAdm, name: 'menu-adm'},
     { path: '/cliente', component: MenuClientes, name: 'menu-cliente'},
+    { path: '/a-empresa', component: AEmpresa, name: 'a-empresa'},
+    { path: '/sobre-nos', component: SobreNos, name: 'sobre-nos'},
 ]

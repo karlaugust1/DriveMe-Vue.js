@@ -24,14 +24,17 @@ export default {
         }
     },
     components:{
-    'carrossel' : Carrossel,
-    'bem-vindo' : BemVindo,
-    'melhores-produtos' : MelhoresProdutos,
-    'divisoria':Divisoria,
-    'mais-visualizados' : MaisVisualizados,
-    'vantagens' : Vantagens,
-    'counter':Counter,
-  }
+        'carrossel' : Carrossel,
+        'bem-vindo' : BemVindo,
+        'melhores-produtos' : MelhoresProdutos,
+        'divisoria':Divisoria,
+        'mais-visualizados' : MaisVisualizados,
+        'vantagens' : Vantagens,
+        'counter':Counter,
+    },
+    mounted(){
+        window.scrollTo(0,0)
+    }
 }
 </script>
 <style>

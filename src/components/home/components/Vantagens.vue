@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="card-section">
-                            <p>Tempore quisquam animi facilis delectus quod est minima, explicabo consectetur vero, nisi dolorum perspiciatis temporibus incidunt ad excepturi in similique magni repellendus at?
+                            <p>A ABC Autopeças, respeitando os valores inerentes à empresa desde sua concepção, compromete-se em realizar todas as entregas em até 72 horas, independente do local de entrega ou da complexidade do serviço.
                             </p>
                         </div>
                     </article><!-- /end .card-post-icon-->
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="card-section">
-                            <p>Est dolorem totam, in consequatur aperiam placeat minima facere pariatur molestiae, minus ea illum vero nemo fugiat voluptate praesentium temporibus odit deleniti.
+                            <p>Problemas com suas compras? Não se preocupe! Nosso suporte altamente capacitado estará disponível para atendê-lo 24 horas por dia, 7 dias por semana.
                             </p>
                         </div>
                     </article><!-- /end .card-post-icon-->
@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="card-section">
-                            <p>Voluptate nostrum, consequuntur ab veniam officiis officia alias voluptas distinctio minima mollitia repudiandae minus vero dolorem excepturi sapiente dicta totam fugiat deserunt.
+                            <p>Buscando trazer honestidade e preços justos ao conturbado segmento automotivo, a ABC Autopeças compromete-se em ofertar apenas os melhores preços, cobrindo qualquer oferta da concorrência.
                             </p>
                         </div>
                     </article><!-- /end .card-post-icon-->

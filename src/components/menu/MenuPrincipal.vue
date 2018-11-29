@@ -23,10 +23,9 @@
                             </li><!-- /end main-menu item -->
 
                             <li>
-                                <a href="#">A Empresa</a>
+                                <router-link to="/a-empresa">A Empresa</router-link>
                                 <ul class="menu vertical">
-                                    <li><a href="about-us.html">Sobre Nós</a></li>
-                                    <li><a href="faq.html">Como Comprar</a></li>
+                                    <li><router-link to="/sobre-nos">Sobre Nós</router-link></li>
                                     <!-- <li><router-link to="/peca/cadastro">Cadastrar peça</router-link></li> -->
                                 </ul>
                             </li><!-- /end main-menu item -->
